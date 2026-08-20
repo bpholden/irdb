@@ -87,3 +87,6 @@ TEST*.fits
 .pylint.d/
 
 .DS_Store
+
+# Large unzipped data products (kept zipped in the repo)
+Maunakea/TER_maunakea_tapas.dat

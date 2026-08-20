@@ -26,16 +26,25 @@ properties :
   instrument: LRIS-2
   modes : ["IMG"]
   airmass : 1.1
+  # az must be given explicitly: get_observation_info_from_cmds() passes
+  # az=None when !OBS.az is missing, which overrides get_target()'s az=0
+  # default and raises. 180 deg = pointing due south.
+  az : 180.0
   declination : 0
   hour_angle : 0
   pupil_angle : 0
   dit : 60
   ndit : 1
   bias : 1040
-  mjdobs : 59618.2
+  mjdobs : 61267.4
   object : "ASTRO"
-  ra : "00:00:00.000"
-  dec : "00:00:00.000"
+  # NOTE: these are deliberately NOT called "ra"/"dec". ScopeSim's get_target()
+  # gives !OBS.ra / !OBS.dec precedence over !OBS.airmass, so defining them
+  # would silently override the airmass set above. They are named target_ra /
+  # target_dec so they only ever feed the FITS headers, and !OBS.airmass stays
+  # the single knob controlling the sky model. See FITS_extra_keywords.yaml.
+  target_ra : "21:29:58.000"
+  target_dec : "12:10:01.000"
   obsmode : 'LRIS-2Bias'
 
 mode_yamls :
@@ -44,7 +53,7 @@ mode_yamls :
   name : IMG
   description : "LRIS-2 imaging mode"
   properties:
-    filter_name : sdss_r_filter
+    filter_name : sdss_r
     grating_name : None
     longslit_name: None
     obsmode: LRIS-2Bias

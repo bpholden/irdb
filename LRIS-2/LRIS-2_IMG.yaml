@@ -7,17 +7,26 @@ description : The LRIS-2 imaging optics
 date_created: 2022-05-06
 
 effects:
-  - name: filter
-    description: LRIS-2 filter curve from the Spanish VO
-    class: SpanishVOFilterWheel
+  # NOTE: this was a SpanishVOFilterWheel querying observatory=Keck,
+  # instrument=LRIS-2. That can never work: SVO has no "LRIS-2" instrument
+  # (only the original LRIS), and none of its Keck/LRIS entries carry the
+  # "_filter" suffix, so the wheel came back empty. Local curves also mean
+  # no network round-trip on every run. Replace the files in filters/ with
+  # the as-built LRIS-2 curves when they exist.
+  - name: filter_wheel
+    description: LRIS-2 imaging filters
+    class: FilterWheel
     include: True
     kwargs:
-      observatory: Keck
-      instrument: LRIS-2
+      filter_names:
+        - sdss_g
+        - sdss_r
+        - sdss_i
+        - sdss_z
+      filename_format: "!INST.filter_file_format"
       current_filter: "!OBS.filter_name"
-      include_str: "_filter"
-      # only include SVO entries with _filter in the name
-      # By default an "open" filter with unity transmission is also included
+      minimum_throughput: 0.
+      action: "transmission"
 
   - name: LRIS-2_red_detector_qe
     description: QE curve for LRIS-2 red detector
@@ -33,12 +42,13 @@ effects:
     kwargs:
       filename: 
 
-  - name: Keck_imaging_transmission
-    description: Combined transmission curve for Keck mirrors and LRIS-2 optics (excluding M3)
+  - name: LRIS-2_imaging_optics
+    description: Throughput of the LRIS-2 instrument optics (collimator + dichroic + camera).
+                 Telescope mirrors are handled separately by the SurfaceList in Keck.yaml.
     class: TERCurve
     include: True
     kwargs:
-      filename: Keck_im_efficiency.dat
+      filename: TER_LRIS-2_imaging_optics.dat
 
 ---
 ### default detector parameters for IMG

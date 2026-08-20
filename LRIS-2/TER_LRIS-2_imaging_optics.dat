@@ -1,0 +1,26 @@
+# format_note : This header is parsed as YAML after all leading whitespace is stripped, so keep every entry on one line and avoid apostrophes
+# name : LRIS-2 imaging optics throughput
+# description : Throughput of the LRIS-2 instrument optics in imaging mode
+# author : BPH
+# source : none - invented placeholder
+# date_created : 2026-08-20
+# date_modified : 2026-08-20
+# status : PLACEHOLDER - flat 0.70, invented. Replace before any sensitivity work.
+# type : instrument:transmission
+# action : transmission
+# wavelength_unit : um
+# notes :
+# - Covers collimator, dichroic and camera. Telescope mirrors are NOT included.
+# - Keck mirrors come from Keck/LIST_keck_mirrors.dat via the SurfaceList in Keck.yaml.
+# - Do not add the Keck mirrors here as well, or M1 gets counted twice.
+# - Grid spans 0.30-1.10 um so it still covers the band if SIM.spectral is widened.
+# - Reflection carries the lost light and emissivity is 0, so this adds no thermal
+# - emission. Harmless below 1.1 um, and it avoids a spurious background.
+# changes :
+# - 2026-08-20 (BPH) created as a placeholder
+#
+wavelength  transmission    reflection      emissivity
+0.29        0.00            1.00            0
+0.30        0.70            0.30            0
+1.10        0.70            0.30            0
+1.11        0.00            1.00            0

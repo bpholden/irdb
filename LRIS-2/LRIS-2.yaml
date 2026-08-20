@@ -13,3 +13,4 @@ changes:
 properties:
   pixel_scale: 0.15        # [arcsec / pixel]
   plate_scale: 10.0        # [arcsec / mm]
+  filter_file_format : "filters/TC_filter_{}.dat"

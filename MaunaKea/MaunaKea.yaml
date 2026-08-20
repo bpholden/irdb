@@ -37,7 +37,10 @@ effects :
   include : True
   kwargs:
     disable_transmission: True
-    disable_airglow: True
+    # airglow re-enabled here because the PalaceAirglowEmission effect below is
+    # disabled - see the note on that block. SkyCalc then supplies both the
+    # airglow lines and the residual continuum.
+    disable_airglow: False
     pwv: "!ATMO.pwv"
     wmin: "!SIM.spectral.wave_min"
     wmax: "!SIM.spectral.wave_max"
@@ -45,18 +48,35 @@ effects :
     wres: "!SIM.spectral.spectral_resolution"
     wunit: "!SIM.spectral.wave_unit"
 
-- name : airglow_and_interline_continuum
-  description: Airglow emission lines and residual continuum from PALACE model
-  class : PalaceAirglowEmission
-  include : True
-  kwargs:
-    save_model_output: False
-    only_line: False
-    only_continuum: False
-    pwv: "!ATMO.pwv"
-    lammin: "!SIM.spectral.wave_min"
-    lammax: "!SIM.spectral.wave_max"
-    lamunit: "!SIM.spectral.wave_unit"
+## DISABLED 2026-08-20 (BPH). This block is commented out rather than set to
+## include:False on purpose: ScopeSim's make_effect() constructs every effect
+## before the include flag is ever consulted, so include:False would still run
+## the PALACE model at load time and still crash.
+##
+## Why it crashes: run_palace() expects `palace.model()` to return a 3-tuple
+## (_, spec_cont, spec_line), but the public PALACE v1.0 from Zenodo
+## (https://zenodo.org/records/14064023) returns a single combined `spec`
+## table. The fork was evidently written against a patched PALACE that splits
+## line and continuum emission, and that version is not publicly released.
+##
+## Airglow is meanwhile supplied by SkyCalc above (disable_airglow: False).
+## To restore PALACE, obtain the patched palace package from the ScopeSim fork
+## authors, or adapt run_palace() to the v1.0 single-table return signature.
+##
+## Note also that PALACE is a *Paranal* airglow model being applied to Maunakea.
+#
+# - name : airglow_and_interline_continuum
+#   description: Airglow emission lines and residual continuum from PALACE model
+#   class : PalaceAirglowEmission
+#   include : True
+#   kwargs:
+#     save_model_output: False
+#     only_line: False
+#     only_continuum: False
+#     pwv: "!ATMO.pwv"
+#     lammin: "!SIM.spectral.wave_min"
+#     lammax: "!SIM.spectral.wave_max"
+#     lamunit: "!SIM.spectral.wave_unit"
 
 - name : seeing_psf
   description : Seeing limited but AO enhanceable Moffat PSF (wavelength dependent)

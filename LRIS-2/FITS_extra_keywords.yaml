@@ -1,0 +1,31 @@
+# Extra FITS keywords written into LRIS-2 simulated frames.
+# Modelled on OSIRIS/FITS_extra_keywords.yaml.
+#
+# author : BPH
+# date_created : 2026-08-20
+# status : placeholder - keyword set not yet checked against real LRIS-2 headers
+
+ - ext_type: PrimaryHDU
+   keywords:
+    MJD-OBS: "!OBS.mjdobs"
+    CCD-SUM: "!DET.ccdsum"
+    RA: "!OBS.target_ra"
+    DEC: "!OBS.target_dec"
+    OBJECT: "!OBS.object"
+    OBSMODE: "!OBS.obsmode"
+    AIRMASS: "!OBS.airmass"
+    FILTER: "!OBS.filter_name"
+    GRATING: "!OBS.grating_name"
+    SLITW: "!OBS.longslit_name"
+    INSTRUME: "LRIS-2"
+    TELESCOP: "Keck-I"
+    OBSERVAT: "Maunakea"
+    EXPTIME: "!OBS.dit"
+    NDIT: "!OBS.ndit"
+    LATITUDE: "+19:49:34.7"
+    LONGITUD: "-155:28:27.8"
+    HEIGHT  : "4123"
+
+ - ext_type: ImageHDU
+   keywords:
+    CCD-SUM: "!DET.ccdsum"
