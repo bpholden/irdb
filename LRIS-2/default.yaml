@@ -1,0 +1,86 @@
+### default observation parameters needed for an LRIS-2 simulation
+
+object : configuration
+alias : OBS
+name : LRIS-2_default_configuration
+description : default parameters needed for a LRIS-2 simulation
+status: experimental
+date_created: 2026-08-14
+date_modified: 2026-08-14
+changes:
+  - 2026-08-14 (BPH) Created file based on METIS default.yaml
+
+
+packages :
+- Maunakea
+- Keck
+- LRIS-2
+
+yamls :
+- Maunakea.yaml
+- Keck.yaml
+- LRIS-2.yaml
+- LRIS-2_DET.yaml
+
+properties :
+  instrument: LRIS-2
+  modes : ["IMG"]
+  airmass : 1.1
+  declination : 0
+  hour_angle : 0
+  pupil_angle : 0
+  dit : 60
+  ndit : 1
+  bias : 1040
+  mjdobs : 59618.2
+  object : "ASTRO"
+  ra : "00:00:00.000"
+  dec : "00:00:00.000"
+  obsmode : 'LRIS-2Bias'
+
+mode_yamls :
+- object : instrument
+  alias: OBS
+  name : IMG
+  description : "LRIS-2 imaging mode"
+  properties:
+    filter_name : sdss_r_filter
+    grating_name : None
+    longslit_name: None
+    obsmode: LRIS-2Bias
+  yamls:
+    - LRIS-2_IMG.yaml
+
+- object : instrument
+  alias: OBS
+  name : LSS
+  description : "LRIS-2 Long-Slit mode"
+  properties:
+    filter_name : open
+    grating_name : R400
+    longslit_name : "0.6"
+    obsmode : 'LRIS-2LongSlitSpectroscopy'
+  yamls:
+    - LRIS-2_LSS.yaml
+
+
+---
+### default simulation parameters needed for an LRIS-2 simulation
+object: simulation
+alias: SIM
+name: LRIS-2_simulation_parameters
+description: RC simulation parameters which need to change for a LRIS-2 run
+
+properties:
+  random:
+    seed: None                         # 9001
+
+  spectral:   # in [um]
+    wave_min: 0.310
+    wave_mid: 0.435
+    wave_max: 0.565
+    spectral_bin_width: 0.0005       # 0.5 Angstrom
+
+  computing:
+    spline_order: 1
+    preload_field_of_views: True

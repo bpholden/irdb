@@ -1,0 +1,53 @@
+### LRIS-2 IMG config
+
+object: instrument
+alias: INST
+name: LRIS-2_IMG
+description : The LRIS-2 imaging optics
+date_created: 2022-05-06
+
+effects:
+  - name: filter
+    description: LRIS-2 filter curve from the Spanish VO
+    class: SpanishVOFilterWheel
+    include: True
+    kwargs:
+      observatory: Keck
+      instrument: LRIS-2
+      current_filter: "!OBS.filter_name"
+      include_str: "_filter"
+      # only include SVO entries with _filter in the name
+      # By default an "open" filter with unity transmission is also included
+
+  - name: LRIS-2_red_detector_qe
+    description: QE curve for LRIS-2 red detector
+    class: QuantumEfficiencyCurve
+    include: True
+    kwargs:
+      filename: STA4850_ID280_QE_v0.880b.txt
+
+  - name: LRIS-2_blue_detector_qe
+    description: QE curve for LRIS-2 blue detector
+    class: QuantumEfficiencyCurve
+    include: False
+    kwargs:
+      filename: 
+
+  - name: Keck_imaging_transmission
+    description: Combined transmission curve for Keck mirrors and LRIS-2 optics (excluding M3)
+    class: TERCurve
+    include: True
+    kwargs:
+      filename: Keck_im_efficiency.dat
+
+---
+### default detector parameters for IMG
+object : detector
+alias : DET
+name : LRIS-2_IMG_detector_params
+description : Default detector params for IMG
+
+properties:
+  binx: 2 #North-South with old CCD
+  biny: 2 #North-South with new CCD
+  ccdsum: '2 2'
