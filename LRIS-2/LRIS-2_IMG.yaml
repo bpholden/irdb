@@ -58,6 +58,6 @@ name : LRIS-2_IMG_detector_params
 description : Default detector params for IMG
 
 properties:
-  binx: 2 #North-South with old CCD
-  biny: 2 #North-South with new CCD
+  binx: 2 
+  biny: 2 
   ccdsum: '2 2'
