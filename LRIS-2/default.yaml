@@ -76,9 +76,9 @@ properties:
     seed: None                         # 9001
 
   spectral:   # in [um]
-    wave_min: 0.310
-    wave_mid: 0.435
-    wave_max: 0.565
+    wave_min: 0.555
+    wave_mid: 0.777
+    wave_max: 1.000
     spectral_bin_width: 0.0005       # 0.5 Angstrom
 
   computing:
