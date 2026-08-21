@@ -1,0 +1,93 @@
+# source: STA4850 SN31443 blue CCD
+# wavelength_unit: nm
+# action : transmission
+# type : detector:quantum_efficiency
+# description : Q2E chip quantum efficiency for the LRIS-2 blue CCD
+# origin : digitized from STA4850_SN31443_QE_v0.880b.png, the only form the data exists in
+# date_created : 2026-08-21
+# status : DIGITIZED from a plot, not vendor numbers. See accuracy note below.
+# accuracy : method validated against the red CCD, which has both a PNG and a text file. 95th percentile error 0.0014 QE, median well under 0.001.
+# note : the plot title reads CCD ARC Blue. Detector temperature was not given on the plot, unlike the red file which states -110 degC.
+# grid : 81 markers at 10 nm spacing, 300 to 1100 nm, recovered as 81 separate connected components.
+wavelength transmission
+  300   0.672
+  310   0.838
+  320   0.795
+  330   0.776
+  340   0.812
+  350   0.821
+  360   0.846
+  370   0.846
+  380   0.853
+  390   0.868
+  400   0.886
+  410   0.901
+  420   0.901
+  430   0.901
+  440   0.893
+  450   0.882
+  460   0.870
+  470   0.858
+  480   0.849
+  490   0.844
+  500   0.840
+  510   0.838
+  520   0.837
+  530   0.838
+  540   0.840
+  550   0.838
+  560   0.838
+  570   0.838
+  580   0.837
+  590   0.837
+  600   0.834
+  610   0.832
+  620   0.829
+  630   0.826
+  640   0.823
+  650   0.821
+  660   0.816
+  670   0.812
+  680   0.806
+  690   0.797
+  700   0.788
+  710   0.777
+  720   0.768
+  730   0.759
+  740   0.749
+  750   0.739
+  760   0.728
+  770   0.716
+  780   0.701
+  790   0.685
+  800   0.669
+  810   0.652
+  820   0.633
+  830   0.612
+  840   0.588
+  850   0.562
+  860   0.532
+  870   0.499
+  880   0.469
+  890   0.438
+  900   0.405
+  910   0.371
+  920   0.337
+  930   0.304
+  940   0.274
+  950   0.246
+  960   0.218
+  970   0.191
+  980   0.164
+  990   0.139
+ 1000   0.115
+ 1010   0.091
+ 1020   0.069
+ 1030   0.051
+ 1040   0.035
+ 1050   0.026
+ 1060   0.021
+ 1070   0.018
+ 1080   0.017
+ 1090   0.015
+ 1100   0.014
