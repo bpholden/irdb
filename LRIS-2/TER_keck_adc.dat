@@ -1,0 +1,40 @@
+# format_note : This header is parsed as YAML after all leading whitespace is stripped, so keep every entry on one line and avoid apostrophes
+# name : Keck I ADC throughput
+# description : Total throughput of the Keck I atmospheric dispersion corrector
+# author : BPH
+# source : https://www.ucolick.org/~phillips/adc/adc_throughput.pdf (page 3, Estimated Total Throughput)
+# date_created : 2026-08-20
+# date_modified : 2026-08-20
+# status : estimate - vendor glass curve plus AR coating estimates, not an as-built measurement
+# type : adc:transmission
+# action : transmission
+# wavelength_unit : um
+# notes :
+# - Combined transmission of 70 mm of Corning HPFS 7980 fused silica and the Solgel plus MgF2 AR coatings.
+# - Glass losses are under 1 percent across the range apart from a 2.6 percent dip near 0.93 um.
+# - AR coating values below 0.40 um are assumed (0.99 per surface, 0.96 for 4 surfaces), not measured.
+# - Coating values from 0.40 to 1.10 um derive from measured GMOS ADC throughput with glass absorption removed.
+# - Valid range is 0.30 to 1.10 um. Do not extrapolate beyond it.
+# - This is the ADC THROUGHPUT only.
+# - This is a CASSEGRAIN ADC and does not work with any instrument that is not at Cassegrain focus.
+# - It therefore lives in the LRIS-2 package, not the Keck package, despite being Keck I hardware.
+# - The only other Cassegrain instrument, MOSFIRE, cannot use it either, because of how MOSFIRE is designed.
+# - Residual atmospheric dispersion after ADC correction is the separate adc_residuals effect in Maunakea.yaml, so the two do not double-count.
+# - Reflection carries the lost light and emissivity is 0, so this surface adds no thermal emission.
+# changes :
+# - 2026-08-20 (BPH) created from the UCO/Lick ADC throughput note
+#
+wavelength  transmission    reflection      emissivity
+0.30        0.947           0.053           0
+0.32        0.951           0.049           0
+0.35        0.957           0.043           0
+0.40        0.960           0.040           0
+0.45        0.974           0.026           0
+0.55        0.972           0.028           0
+0.65        0.983           0.017           0
+0.75        0.992           0.008           0
+0.80        0.994           0.006           0
+0.90        0.989           0.011           0
+0.93        0.971           0.029           0
+1.00        0.990           0.010           0
+1.10        0.973           0.027           0

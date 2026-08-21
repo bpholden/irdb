@@ -1,7 +1,7 @@
 # author : Yashvi Sharma
 # source : Nan
 # date_created  : 2025-09-02
-# date_modified : 2025-09-02
+# date_modified : 2026-08-20
 # status :
 # type : mirror:list
 # outer_unit : m
@@ -9,6 +9,8 @@
 # angle_unit : degree
 # temperature_unit  : deg_C
 # changes :
+# - 2026-08-20 (BPH) added M2, same aluminium coating as M1
 #
 name  outer  inner  angle  temperature  action         filename
 M1    10.0    1.0    0.     0           reflection     TC_mirror_aluminium.dat
+M2    10.0    1.0    0.     0           reflection     TC_mirror_aluminium.dat

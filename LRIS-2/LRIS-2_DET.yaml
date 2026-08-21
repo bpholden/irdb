@@ -1,4 +1,27 @@
 ### LRIS-2 DETECTOR
+#
+# READOUT AMPLIFIERS
+# The device has four readout amplifiers, each with its own overscan region.
+# ScopeSim has no amplifier concept at all - there is no overscan, prescan or
+# amplifier effect anywhere in the codebase - so all four currently share the
+# single set of values below (gain, readout noise, bias, overscan). That is
+# adequate while the values are identical, which they are for now.
+#
+# To model them separately later, the two viable routes are:
+#   1. Split the array into four quadrants as four DetectorList entries, each
+#      with its own gain. ReferencePixelBorder accepts a dict keyed by
+#      detector id, so each amplifier can then take its own border. The
+#      readout becomes four HDUs, which is how many multi-amp CCD raw frames
+#      are actually stored.
+#   2. Write a real Overscan effect that appends readout rows to the array.
+#
+# CAVEAT ON THE OVERSCAN BELOW
+# ReferencePixelBorder blanks rows *inside* the 4080x4080 imaging area rather
+# than appending extra readout rows beyond it, so the frame stays 4080x4080
+# and the device loses 100 rows of imaging area instead of gaining 100 rows of
+# overscan. The blanked rows do pick up bias and readout noise, so their
+# content is right even though the frame geometry is not. Harmless while the
+# 10x5 arcmin aperture leaves those rows unilluminated anyway.
 object : detector
 alias : DET
 name : LRIS-2_detector
@@ -58,11 +81,15 @@ effects :
           incident: [0, 64e3]
           measured: [0, 64e3]
 
-  - name: border_reference_pixels
-    description: Blanks the signal on N edge row and column pixels
+  - name: overscan_regions
+    description: 50-pixel overscan strips along the top and bottom of the device.
+                 Sequence is [bottom, left, top, right], in unbinned pixels, so
+                 this is 25 rows each at the current 2x2 binning. One set of
+                 values is used for all four readout amplifiers for now; see the
+                 note in this file about modelling them separately.
     class: ReferencePixelBorder
     kwargs:
-      border: [0, 50, 0, 0]
+      border: [50, 0, 50, 0]
 
   - name : readout_noise
     description : Readout noise frames
@@ -91,10 +118,3 @@ effects :
     include : True
     kwargs :
       filename: FITS_extra_keywords.yaml
-
-  - name: NewCCD_rotation
-    description: New LRIS-2 CCD is rotated 90 degrees
-    class: Rotate90CCD
-    include: True
-    kwargs:
-      rotations: 1

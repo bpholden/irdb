@@ -15,4 +15,3 @@ effects:
   include : True
   kwargs :
     filename : LIST_keck_mirrors.dat
-

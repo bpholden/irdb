@@ -32,3 +32,17 @@ effects:
     angle_unit: deg
     shape: rect
     conserve_image: True
+
+- name : adc_throughput
+  description : Throughput of the Keck I Cassegrain ADC. This is Keck I hardware, but it
+                lives in the LRIS-2 package rather than the Keck package because it is a
+                Cassegrain ADC and cannot be used by any instrument that is not at
+                Cassegrain focus. The only other Cassegrain instrument, MOSFIRE, cannot
+                use it either, because of how MOSFIRE is designed. So LRIS-2 is currently
+                its only user. Being in this file, it applies to all LRIS-2 modes.
+                The residual dispersion left after ADC correction is modelled separately
+                by the adc_residuals effect in Maunakea.yaml.
+  class : TERCurve
+  include : True
+  kwargs :
+    filename : TER_keck_adc.dat
