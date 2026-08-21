@@ -1,0 +1,21 @@
+# format_note : This header is parsed as YAML after all leading whitespace is stripped, so keep every entry on one line and avoid apostrophes
+# name : LRIS-2 collimator coating
+# description : Flat 99.9 percent reflectivity for one LRIS-2 collimator surface
+# author : BPH
+# source : specified by the LRIS-2 team as 99.9 percent across the full bandpass
+# date_created : 2026-08-20
+# date_modified : 2026-08-20
+# status : specification, flat with wavelength, not a measured curve
+# type : mirror:reflection
+# action : reflection
+# wavelength_unit : um
+# notes :
+# - This is ONE surface. The collimator has two, applied via LIST_LRIS-2_collimator.dat.
+# - Two reflections give a net 0.999 squared = 0.998001 across the band.
+# - Valid range is 0.30 to 1.10 um, matching the dichroic and ADC curves.
+# changes :
+# - 2026-08-20 (BPH) created from the stated 99.9 percent specification
+#
+wavelength  reflection
+0.30        0.999
+1.10        0.999

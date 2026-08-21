@@ -43,8 +43,10 @@ effects:
       filename: 
 
   - name: LRIS-2_imaging_optics
-    description: Throughput of the LRIS-2 instrument optics (collimator + dichroic + camera).
-                 Telescope mirrors are handled separately by the SurfaceList in Keck.yaml.
+    description: Throughput of the LRIS-2 CAMERA optics only. The collimator and the
+                 dichroic are separate effects in LRIS-2.yaml, and the telescope mirrors
+                 are the SurfaceList in Keck.yaml, so none of them belong here.
+                 A real replacement curve must exclude all three or it will double-count.
     class: TERCurve
     include: True
     kwargs:

@@ -1,0 +1,24 @@
+# format_note : This header is parsed as YAML after all leading whitespace is stripped, so keep every entry on one line and avoid apostrophes
+# name : LRIS-2 collimator surfaces
+# description : The two reflecting surfaces of the LRIS-2 collimator
+# author : BPH
+# source : LRIS-2 team, 99.9 percent per surface
+# date_created : 2026-08-20
+# date_modified : 2026-08-20
+# status : specification
+# type : mirror:list
+# outer_unit : m
+# inner_unit : m
+# angle_unit : degree
+# temperature_unit : deg_C
+# notes :
+# - The collimator sits AFTER the Keck I Cassegrain ADC and BEFORE the dichroic.
+# - outer and inner are NOT known and are numerically inert here. OpticsManager.area takes the
+# - max over all SurfaceLists, and the Keck 10 m entry dominates, so these values only need to
+# - stay below it. They are placeholders and should not be quoted as collimator dimensions.
+# changes :
+# - 2026-08-20 (BPH) created
+#
+name  outer  inner  angle  temperature  action         filename
+C1    0.5    0.0    0.     0            reflection     TC_collimator_coating.dat
+C2    0.5    0.0    0.     0            reflection     TC_collimator_coating.dat

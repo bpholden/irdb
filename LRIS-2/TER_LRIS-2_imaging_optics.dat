@@ -1,6 +1,6 @@
 # format_note : This header is parsed as YAML after all leading whitespace is stripped, so keep every entry on one line and avoid apostrophes
 # name : LRIS-2 imaging optics throughput
-# description : Throughput of the LRIS-2 instrument optics in imaging mode
+# description : Throughput of the LRIS-2 camera optics in imaging mode
 # author : BPH
 # source : none - invented placeholder
 # date_created : 2026-08-20
@@ -10,7 +10,10 @@
 # action : transmission
 # wavelength_unit : um
 # notes :
-# - Covers collimator, dichroic and camera. Telescope mirrors are NOT included.
+# - Covers the CAMERA ONLY. Telescope mirrors are NOT included.
+# - The collimator is NOT included here. It is the SurfaceList on LIST_LRIS-2_collimator.dat.
+# - The dichroic is NOT included here either. It is a separate effect on TER_LRIS-2_dichroic.dat.
+# - When a real curve replaces this placeholder, make sure it excludes the dichroic or it double-counts.
 # - Keck mirrors come from Keck/LIST_keck_mirrors.dat via the SurfaceList in Keck.yaml.
 # - Do not add the Keck mirrors here as well, or M1 gets counted twice.
 # - Grid spans 0.30-1.10 um so it still covers the band if SIM.spectral is widened.
