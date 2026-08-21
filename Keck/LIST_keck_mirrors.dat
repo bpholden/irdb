@@ -1,5 +1,5 @@
 # author : Yashvi Sharma
-# source : Nan
+# source : collecting area from LRIS2_ETC Telescope.keck, 723674 cm2 = 72.3674 m2
 # date_created  : 2025-09-02
 # date_modified : 2026-08-20
 # status :
@@ -8,9 +8,15 @@
 # inner_unit : m
 # angle_unit : degree
 # temperature_unit  : deg_C
+# notes :
+# - inner is set to 2.8034 m so that the annulus area matches the ETC value of 72.3674 m2.
+# - that corresponds to the 7.9 percent central obscuration quoted by Telescope.keck.
+# - it is NOT the physical diameter of any baffle, it is the equivalent-area obscuration.
+# - SurfaceList.area takes the max over surfaces, so M1 and M2 carry the same aperture.
 # changes :
 # - 2026-08-20 (BPH) added M2, same aluminium coating as M1
+# - 2026-08-21 (BPH) inner 1.0 -> 2.8034 m to match the ETC collecting area
 #
 name  outer  inner  angle  temperature  action         filename
-M1    10.0    1.0    0.     0           reflection     TC_mirror_aluminium.dat
-M2    10.0    1.0    0.     0           reflection     TC_mirror_aluminium.dat
+M1    10.0    2.8034 0.     0           reflection     TC_mirror_aluminium.dat
+M2    10.0    2.8034 0.     0           reflection     TC_mirror_aluminium.dat

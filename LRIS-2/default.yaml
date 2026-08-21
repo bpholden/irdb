@@ -29,8 +29,8 @@ properties :
   # Fallback wavelength range, overridden by whichever mode is selected below.
   # Defaults to the red arm.
   wave_min : 0.555
-  wave_mid : 0.777
-  wave_max : 1.000
+  wave_mid : 0.800
+  wave_max : 1.100
   # az must be given explicitly: get_observation_info_from_cmds() passes
   # az=None when !OBS.az is missing, which overrides get_target()'s az=0
   # default and raises. 180 deg = pointing due south.
@@ -63,8 +63,12 @@ mode_yamls :
     longslit_name: None
     obsmode: LRIS-2Bias
     wave_min : 0.555        # above the 560 nm dichroic crossover
-    wave_mid : 0.777
-    wave_max : 1.000
+    wave_mid : 0.800
+    wave_max : 1.100        # 1.100 is the hard ceiling: the ADC, collimator,
+                            # dichroic and red CCD QE curves all stop there.
+                            # sdss_z reaches 1.35 um and so is still clipped,
+                            # but red QE is only 0.025 by 1.10 um so the loss
+                            # is negligible.
   yamls:
     - LRIS-2_IMG.yaml
     - LRIS-2_IMG_R.yaml
