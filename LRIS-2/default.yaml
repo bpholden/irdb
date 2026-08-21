@@ -91,19 +91,33 @@ mode_yamls :
 
 - object : instrument
   alias: OBS
-  name : LSS
-  description : "LRIS-2 Long-Slit mode"
+  name : LSS_R
+  description : "LRIS-2 long-slit, red arm (R400)"
   properties:
     filter_name : open
     grating_name : R400
-    longslit_name : "0.6"
+    longslit_name : "0.7"
     obsmode : 'LRIS-2LongSlitSpectroscopy'
-    wave_min : 0.300
-    wave_mid : 0.650
-    wave_max : 1.000
+    wave_min : 0.520          # detector edge for R400: 5195 A
+    wave_mid : 0.750          # central wavelength 7500 A
+    wave_max : 0.985          # detector edge for R400: 9805 A
   yamls:
-    - LRIS-2_LSS.yaml
+    - LRIS-2_LSS_R.yaml
 
+- object : instrument
+  alias: OBS
+  name : LSS_B
+  description : "LRIS-2 long-slit, blue arm (B600)"
+  properties:
+    filter_name : open
+    grating_name : B600
+    longslit_name : "0.7"
+    obsmode : 'LRIS-2LongSlitSpectroscopy'
+    wave_min : 0.313          # detector edge for B600: 3135 A
+    wave_mid : 0.440          # central wavelength 4400 A
+    wave_max : 0.567          # detector edge for B600: 5665 A
+  yamls:
+    - LRIS-2_LSS_B.yaml
 
 ---
 ### default simulation parameters needed for an LRIS-2 simulation

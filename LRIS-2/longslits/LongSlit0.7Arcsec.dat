@@ -1,0 +1,23 @@
+# format_note : This header is parsed as YAML after all leading whitespace is stripped, so keep every entry on one line and avoid apostrophes
+# name : LRIS-2 0.7 arcsec long slit
+# description : 24 arcsec long by 0.7 arcsec wide slit, centred on the field
+# author : BPH
+# source : slit length and width specified by the LRIS-2 team
+# date_created : 2026-08-21
+# date_modified : 2026-08-21
+# status : specification
+# type : aperture:slit_geometry
+# x_unit : arcsec
+# y_unit : arcsec
+# notes :
+# - x runs ALONG the slit, so the 24 arcsec length is the x extent, -12 to +12.
+# - y is the slit WIDTH, 0.7 arcsec, so -0.35 to +0.35.
+# - dispersion runs along CCD columns, perpendicular to the slit length.
+# changes :
+# - 2026-08-21 (BPH) created
+#
+    x      y
+-12.0  -0.35
+ 12.0  -0.35
+ 12.0   0.35
+-12.0   0.35

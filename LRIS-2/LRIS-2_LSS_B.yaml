@@ -1,0 +1,90 @@
+### LRIS-2 long-slit, blue arm
+#
+# Loaded by the LSS_B mode. Holds what is specific to the blue spectroscopic
+# arm: the B600 grating, the blue CCD QE, the dichroic in reflection, the slit
+# and the spectral trace.
+#
+# THE TRACE GEOMETRY IS PROVISIONAL. See code/make_lss_traces.py - it is a
+# straight, untilted, linearly dispersed trace, which is a starting point and
+# not a real optical model.
+
+object: instrument
+alias: INST
+name: LRIS-2_LSS_B
+description : LRIS-2 blue long-slit arm
+date_created: 2026-08-21
+
+properties:
+  decouple_detector_from_sky_headers: True   # required for slit spectroscopy
+  grating_names:
+    - B600
+
+effects:
+  - name: grating_efficiency
+    description: B600 grating efficiency. Grating assembly only - telescope, ADC,
+                 collimator, dichroic, camera and QE are all applied separately.
+                 Piggybacks on FilterWheel, as OSIRIS does.
+    class: FilterWheel
+    include: True
+    kwargs:
+      minimum_throughput: 0.
+      filename_format: "gratings/{}.dat"
+      current_filter: "!OBS.grating_name"
+      filter_names: "!INST.grating_names"
+
+  - name: slit_wheel
+    description: LRIS-2 long slits
+    class: SlitWheel
+    include: True
+    kwargs:
+      filename_format: "longslits/LongSlit{}Arcsec.dat"
+      current_slit: "!OBS.longslit_name"
+      slit_names:
+        - "0.7"
+
+  - name: spectral_trace_wheel
+    description: spectral trace geometry for the blue arm. PROVISIONAL - straight,
+                 untilted, linear dispersion. Regenerate with code/make_lss_traces.py.
+    class: SpectralTraceListWheel
+    include: True
+    kwargs:
+      wave_colname: "wavelength"
+      s_colname: "xi"
+      current_trace_list: "!OBS.grating_name"
+      filename_format: "traces/LSS_{}_TRACE.fits"
+      trace_list_names: "!INST.grating_names"
+
+  - name: LRIS-2_blue_detector_qe
+    description: QE curve for the LRIS-2 blue CCD
+    class: QuantumEfficiencyCurve
+    include: True
+    kwargs:
+      filename: STA4850_SN31443_QE_v0.880b.txt
+
+  - name: dichroic_blue
+    description: LRIS-2 dichroic in reflection, the blue side of the 560 nm crossover
+    class: TERCurve
+    include: True
+    kwargs:
+      filename: TER_LRIS-2_dichroic.dat
+      action: reflection
+
+  - name: LRIS-2_camera_optics
+    description: LRIS-2 camera throughput. Collimator is in LRIS-2.yaml, telescope
+                 mirrors in Keck.yaml, so neither belongs here.
+    class: TERCurve
+    include: True
+    kwargs:
+      filename: TER_LRIS-2_imaging_optics.dat
+
+---
+### detector parameters for LSS
+object : detector
+alias : DET
+name : LRIS-2_LSS_B_detector_params
+description : LSS runs unbinned, unlike imaging
+
+properties:
+  binx: 1
+  biny: 1
+  ccdsum: '1 1'
