@@ -3,7 +3,7 @@
 object: instrument
 alias: INST
 name: LRIS-2_IMG
-description : The LRIS-2 imaging optics
+description : LRIS-2 imaging optics common to both arms
 date_created: 2022-05-06
 
 effects:
@@ -19,6 +19,7 @@ effects:
     include: True
     kwargs:
       filter_names:
+        - sdss_u
         - sdss_g
         - sdss_r
         - sdss_i
@@ -28,30 +29,15 @@ effects:
       minimum_throughput: 0.
       action: "transmission"
 
-  - name: LRIS-2_red_detector_qe
-    description: QE curve for LRIS-2 red detector
-    class: QuantumEfficiencyCurve
-    include: True
-    kwargs:
-      filename: STA4850_ID280_QE_v0.880b.txt
-
-  - name: LRIS-2_blue_detector_qe
-    description: QE curve for the LRIS-2 blue detector, STA4850 SN31443. Digitized from
-                 a PNG plot, which is the only form the data exists in. DELIBERATELY
-                 include:False - the red and blue CCDs are alternative arms, not surfaces
-                 in series, so enabling both would multiply the two QE curves together
-                 and be wrong. To model the blue arm, switch this to True, set the red
-                 one to False, switch the dichroic to action:reflection, and widen
-                 SIM.spectral to cover the blue side of the 560 nm crossover.
-    class: QuantumEfficiencyCurve
-    include: False
-    kwargs:
-      filename: STA4850_SN31443_QE_v0.880b.txt
+  # NOTE: the detector QE curves are NOT here. They are arm-specific and mutually
+  # exclusive - the red and blue CCDs are alternative arms, not surfaces in series,
+  # so enabling both would multiply the two QE curves together. Each arm file
+  # enables exactly one. See LRIS-2_IMG_R.yaml and LRIS-2_IMG_B.yaml.
 
   - name: LRIS-2_imaging_optics
-    description: Throughput of the LRIS-2 CAMERA optics only. The collimator and the
-                 dichroic are separate effects in LRIS-2.yaml, and the telescope mirrors
-                 are the SurfaceList in Keck.yaml, so none of them belong here.
+    description: Throughput of the LRIS-2 CAMERA optics only. The collimator is in
+                 LRIS-2.yaml, the dichroic is in the per-arm files, and the telescope
+                 mirrors are the SurfaceList in Keck.yaml, so none belong here.
                  A real replacement curve must exclude all three or it will double-count.
     class: TERCurve
     include: True

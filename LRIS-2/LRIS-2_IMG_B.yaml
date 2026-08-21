@@ -1,0 +1,34 @@
+### LRIS-2 imaging, BLUE arm
+#
+# Loaded by the IMG_B mode alongside LRIS-2_IMG.yaml. Holds only what is specific
+# to the blue arm: the blue CCD QE, the dichroic in reflection, and the blue
+# wavelength range. Everything arm-independent is in LRIS-2_IMG.yaml.
+
+object: instrument
+alias: INST
+name: LRIS-2_IMG_B
+description : LRIS-2 blue imaging arm
+date_created: 2026-08-21
+
+effects:
+  - name: LRIS-2_blue_detector_qe
+    description: QE curve for the LRIS-2 blue CCD, STA4850 SN31443. DIGITIZED from a
+                 PNG plot, which is the only form the data exists in, so it is good to
+                 roughly 0.001 QE rather than exact. Detector temperature was not given
+                 on that plot. Exactly one detector QE curve may be active, which is why
+                 the red curve lives in LRIS-2_IMG_R.yaml.
+    class: QuantumEfficiencyCurve
+    include: True
+    kwargs:
+      filename: STA4850_SN31443_QE_v0.880b.txt
+
+  - name: dichroic_blue
+    description: LRIS-2 dichroic in REFLECTION, which is the blue side. Crossover is at
+                 560 nm, below which the dichroic reflects about 99 percent. Same
+                 physical part and same data file as dichroic_red, which takes the
+                 transmission column instead.
+    class: TERCurve
+    include: True
+    kwargs:
+      filename: TER_LRIS-2_dichroic.dat
+      action: reflection

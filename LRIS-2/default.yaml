@@ -24,8 +24,13 @@ yamls :
 
 properties :
   instrument: LRIS-2
-  modes : ["IMG"]
+  modes : ["IMG_R"]
   airmass : 1.1
+  # Fallback wavelength range, overridden by whichever mode is selected below.
+  # Defaults to the red arm.
+  wave_min : 0.555
+  wave_mid : 0.777
+  wave_max : 1.000
   # az must be given explicitly: get_observation_info_from_cmds() passes
   # az=None when !OBS.az is missing, which overrides get_target()'s az=0
   # default and raises. 180 deg = pointing due south.
@@ -50,15 +55,35 @@ properties :
 mode_yamls :
 - object : instrument
   alias: OBS
-  name : IMG
-  description : "LRIS-2 imaging mode"
+  name : IMG_R
+  description : "LRIS-2 imaging, red arm (above the 560 nm dichroic crossover)"
   properties:
     filter_name : sdss_r
     grating_name : None
     longslit_name: None
     obsmode: LRIS-2Bias
+    wave_min : 0.555        # above the 560 nm dichroic crossover
+    wave_mid : 0.777
+    wave_max : 1.000
   yamls:
     - LRIS-2_IMG.yaml
+    - LRIS-2_IMG_R.yaml
+
+- object : instrument
+  alias: OBS
+  name : IMG_B
+  description : "LRIS-2 imaging, blue arm (below the 560 nm dichroic crossover)"
+  properties:
+    filter_name : sdss_g
+    grating_name : None
+    longslit_name: None
+    obsmode: LRIS-2Bias
+    wave_min : 0.300        # below the 560 nm dichroic crossover
+    wave_mid : 0.450
+    wave_max : 0.600
+  yamls:
+    - LRIS-2_IMG.yaml
+    - LRIS-2_IMG_B.yaml
 
 - object : instrument
   alias: OBS
@@ -69,6 +94,9 @@ mode_yamls :
     grating_name : R400
     longslit_name : "0.6"
     obsmode : 'LRIS-2LongSlitSpectroscopy'
+    wave_min : 0.300
+    wave_mid : 0.650
+    wave_max : 1.000
   yamls:
     - LRIS-2_LSS.yaml
 
@@ -85,9 +113,13 @@ properties:
     seed: None                         # 9001
 
   spectral:   # in [um]
-    wave_min: 0.555
-    wave_mid: 0.777
-    wave_max: 1.000
+    # Deferred to the selected mode. A SIM document inside a mode yaml does NOT
+    # work: _load_yaml_dict() processes mode_yamls while handling the first
+    # document of this file, so this SIM document is read afterwards and would
+    # overwrite it. Bang keys resolve lazily, so load order stops mattering.
+    wave_min: "!OBS.wave_min"
+    wave_mid: "!OBS.wave_mid"
+    wave_max: "!OBS.wave_max"
     spectral_bin_width: 0.0005       # 0.5 Angstrom
 
   computing:

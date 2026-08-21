@@ -1,0 +1,32 @@
+### LRIS-2 imaging, RED arm
+#
+# Loaded by the IMG_R mode alongside LRIS-2_IMG.yaml. Holds only what is specific
+# to the red arm: the red CCD QE, the dichroic in transmission, and the red
+# wavelength range. Everything arm-independent is in LRIS-2_IMG.yaml.
+
+object: instrument
+alias: INST
+name: LRIS-2_IMG_R
+description : LRIS-2 red imaging arm
+date_created: 2026-08-21
+
+effects:
+  - name: LRIS-2_red_detector_qe
+    description: QE curve for the LRIS-2 red CCD, STA4850 ID280 at -110 degC.
+                 Vendor text file. Exactly one detector QE curve may be active,
+                 which is why the blue curve lives in LRIS-2_IMG_B.yaml.
+    class: QuantumEfficiencyCurve
+    include: True
+    kwargs:
+      filename: STA4850_ID280_QE_v0.880b.txt
+
+  - name: dichroic_red
+    description: LRIS-2 dichroic in TRANSMISSION, which is the red side. Crossover is
+                 at 560 nm, above which the dichroic transmits about 98 percent.
+                 Same physical part and same data file as dichroic_blue, which takes
+                 the reflection column instead.
+    class: TERCurve
+    include: True
+    kwargs:
+      filename: TER_LRIS-2_dichroic.dat
+      action: transmission

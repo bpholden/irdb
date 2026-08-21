@@ -56,15 +56,7 @@ effects:
   kwargs :
     filename : LIST_LRIS-2_collimator.dat
 
-- name : dichroic
-  description : LRIS-2 dichroic, 28 deg AOI, vendor coating design. Crossover is at
-                560 nm. Red light is TRANSMITTED and blue light is REFLECTED, so the
-                red arm takes action:transmission as set here. When the blue arm is
-                built, add a second TERCurve on the same file with action:reflection.
-                Both columns live in one file because they are two outputs of the
-                same physical part.
-  class : TERCurve
-  include : True
-  kwargs :
-    filename : TER_LRIS-2_dichroic.dat
-    action : transmission
+# NOTE: the dichroic is NOT here, even though it is one physical part in the common
+# beam. Which of its two columns applies depends on the arm - the red arm uses
+# transmission, the blue arm uses reflection - so it lives in LRIS-2_IMG_R.yaml and
+# LRIS-2_IMG_B.yaml instead. Both point at the same TER_LRIS-2_dichroic.dat.
