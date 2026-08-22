@@ -13,6 +13,10 @@
 # - x runs ALONG the slit, so the 24 arcsec length is the x extent, -12 to +12.
 # - y is the slit WIDTH, 0.7 arcsec, so -0.35 to +0.35.
 # - dispersion runs along CCD columns, perpendicular to the slit length.
+# - y is therefore the along-dispersion direction, so the 0.7 arcsec width sets the resolution.
+# - Verified: this slit illuminates exactly 159 detector columns, and 24/0.1505 = 159.
+# - The slit is centred at 0,0. It may be OFFSET in y only within +/-90 arcsec: the imaging
+# - field reaches +/-150 arcsec in y but the spectrograph does not work beyond +/-90.
 # changes :
 # - 2026-08-21 (BPH) created
 #

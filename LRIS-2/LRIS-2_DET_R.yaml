@@ -1,0 +1,37 @@
+### LRIS-2 RED detector format
+#
+# Only the DetectorList lives here. All the shared electronics - exposure
+# integration, dark, shot noise, readout noise, binning, bias, FITS keywords -
+# are in LRIS-2_DET.yaml, which every mode also loads.
+#
+# The spreadsheet quotes nominal CCD edges of +/- 30.72 mm, but the red
+# STA5100 is 4080 pixels, so its real edges are +/- 30.60 mm. The red trace
+# is clipped to the real detector, losing a 0.12 mm sliver at each end.
+
+object : detector
+alias : DET
+name : LRIS-2_red_detector
+description : STA5100, 4080 x 4080 pixels, half height 30.60 mm
+
+effects :
+  - name: LRIS-2_red_detector_geometry
+    description: STA5100, 4080 x 4080 pixels, half height 30.60 mm
+    class: DetectorList
+    kwargs:
+      array_dict:
+        id: [1]
+        x_cen: [0]
+        y_cen: [0]
+        x_size: [4080]
+        y_size: [4080]
+        pixel_size: [0.015]
+        angle: [0.]
+        gain: [1.]
+      x_cen_unit : mm
+      y_cen_unit : mm
+      x_size_unit : pixel
+      y_size_unit : pixel
+      pixel_size_unit : mm
+      angle_unit : deg
+      gain_unit : electron/adu
+      image_plane_id : 0

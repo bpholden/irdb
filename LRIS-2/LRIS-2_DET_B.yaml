@@ -1,0 +1,36 @@
+### LRIS-2 BLUE detector format
+#
+# Only the DetectorList lives here. All the shared electronics - exposure
+# integration, dark, shot noise, readout noise, binning, bias, FITS keywords -
+# are in LRIS-2_DET.yaml, which every mode also loads.
+#
+# PROVISIONAL. The blue detector is not finalised; 4096 pixels is the working
+# assumption and matches the +/- 30.72 mm nominal edges in the spreadsheet.
+
+object : detector
+alias : DET
+name : LRIS-2_blue_detector
+description : 4096 x 4096 pixels, half height 30.72 mm
+
+effects :
+  - name: LRIS-2_blue_detector_geometry
+    description: 4096 x 4096 pixels, half height 30.72 mm
+    class: DetectorList
+    kwargs:
+      array_dict:
+        id: [1]
+        x_cen: [0]
+        y_cen: [0]
+        x_size: [4096]
+        y_size: [4096]
+        pixel_size: [0.015]
+        angle: [0.]
+        gain: [1.]
+      x_cen_unit : mm
+      y_cen_unit : mm
+      x_size_unit : pixel
+      y_size_unit : pixel
+      pixel_size_unit : mm
+      angle_unit : deg
+      gain_unit : electron/adu
+      image_plane_id : 0

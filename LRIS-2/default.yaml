@@ -70,6 +70,7 @@ mode_yamls :
                             # but red QE is only 0.025 by 1.10 um so the loss
                             # is negligible.
   yamls:
+    - LRIS-2_DET_R.yaml
     - LRIS-2_IMG.yaml
     - LRIS-2_IMG_R.yaml
 
@@ -86,6 +87,7 @@ mode_yamls :
     wave_mid : 0.450
     wave_max : 0.600
   yamls:
+    - LRIS-2_DET_B.yaml
     - LRIS-2_IMG.yaml
     - LRIS-2_IMG_B.yaml
 
@@ -98,10 +100,11 @@ mode_yamls :
     grating_name : R400
     longslit_name : "0.7"
     obsmode : 'LRIS-2LongSlitSpectroscopy'
-    wave_min : 0.520          # detector edge for R400: 5195 A
-    wave_mid : 0.750          # central wavelength 7500 A
-    wave_max : 0.985          # detector edge for R400: 9805 A
+    wave_min : 0.541          # R400 on the 4080 px STA5100, from the spreadsheet
+    wave_mid : 0.775
+    wave_max : 1.010
   yamls:
+    - LRIS-2_DET_R.yaml
     - LRIS-2_LSS_R.yaml
 
 - object : instrument
@@ -113,10 +116,11 @@ mode_yamls :
     grating_name : B600
     longslit_name : "0.7"
     obsmode : 'LRIS-2LongSlitSpectroscopy'
-    wave_min : 0.313          # detector edge for B600: 3135 A
-    wave_mid : 0.440          # central wavelength 4400 A
-    wave_max : 0.567          # detector edge for B600: 5665 A
+    wave_min : 0.300          # B600 on the 4096 px blue CCD, from the spreadsheet.
+    wave_mid : 0.440          # 300 nm sits at -27.057 mm, so the spectrum leaves
+    wave_max : 0.581          # a 244 px unused strip at the blue edge.
   yamls:
+    - LRIS-2_DET_B.yaml
     - LRIS-2_LSS_B.yaml
 
 ---
