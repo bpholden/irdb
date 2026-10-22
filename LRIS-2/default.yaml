@@ -40,7 +40,6 @@ properties :
   pupil_angle : 0
   dit : 60
   ndit : 1
-  bias : 1040
   mjdobs : 61267.4
   object : "ASTRO"
   # NOTE: these are deliberately NOT called "ra"/"dec". ScopeSim's get_target()

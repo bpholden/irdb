@@ -10,11 +10,16 @@
 object : detector
 alias : DET
 name : LRIS-2_blue_detector
-description : 4096 x 4096 pixels, half height 30.72 mm
+description : STA5100 4096 x 4096 pixels, half height 30.72 mm
+
+# From LRIS2_ETC Instrument.lris2_blue. The ETC gives no gain.
+properties :
+  dark_current : 2.139e-4     # [e-/s/pixel] 0.77 e-/hr
+  readout_noise : 3.5         # [e-]
 
 effects :
   - name: LRIS-2_blue_detector_geometry
-    description: 4096 x 4096 pixels, half height 30.72 mm
+    description: STA5100 4096 x 4096 pixels, half height 30.72 mm
     class: DetectorList
     kwargs:
       array_dict:
@@ -25,7 +30,7 @@ effects :
         y_size: [4096]
         pixel_size: [0.015]
         angle: [0.]
-        gain: [1.]
+        gain: [2.9]
       x_cen_unit : mm
       y_cen_unit : mm
       x_size_unit : pixel

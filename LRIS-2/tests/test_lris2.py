@@ -4,7 +4,8 @@ Each mode observes a V=15 star for 60 s. The expected values are regression
 numbers measured on 2026-10-20 with the COO ScopeSim fork (including the
 zodiacal-light fix on branch fix-zodiacal-ecliptic-coords) and the COO PALACE
 airglow model. The imaging sky corresponds to a dark Maunakea sky of about
-21.0 mag/arcsec2 in r and 22.2 in g.
+21.0 mag/arcsec2 in r and 22.2 in g. The long-slit values were updated on
+2026-10-21, when the grating curves became grating-only (DE x PRISMS).
 
 The Maunakea sky effects query SkyCalc over the network and need the COO
 ScopeSim fork, so the tests are skipped when that fork is not installed.
@@ -91,7 +92,7 @@ class TestLongSlit:
         sky = np.median(img[:, sky_cols], axis=1)
         return (img[:, xc - 15:xc + 16] - sky[:, None]).sum(axis=1)
 
-    @pytest.mark.parametrize("mode, total", [("LSS_R", 1.55e7), ("LSS_B", 1.61e7)])
+    @pytest.mark.parametrize("mode, total", [("LSS_R", 2.64e7), ("LSS_B", 2.64e7)])
     def test_star_counts_through_slit(self, mode, total):
         assert self.trace_spectrum(mode).sum() == pytest.approx(total, rel=0.2)
 

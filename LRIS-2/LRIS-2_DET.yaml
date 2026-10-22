@@ -48,9 +48,9 @@ effects :
   - name: dark_current
     description : LRIS-2 dark current
     class: DarkCurrent
-    # [e-/s] level of dark current for each detector
+    # [e-/s] level of dark current, set per arm in LRIS-2_DET_R/B.yaml
     kwargs:
-        value: 0.001
+        value: "!DET.dark_current"
 
   - name: shot_noise
     description : apply poisson shot noise to images
@@ -79,7 +79,7 @@ effects :
     description : Readout noise frames
     class : BasicReadoutNoise
     kwargs :
-        noise_std : 5
+        noise_std : "!DET.readout_noise"   # [e-] set per arm in LRIS-2_DET_R/B.yaml
 
 
   - name: binning

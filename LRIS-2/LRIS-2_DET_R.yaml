@@ -11,11 +11,16 @@
 object : detector
 alias : DET
 name : LRIS-2_red_detector
-description : STA5100, 4080 x 4080 pixels, half height 30.60 mm
+description : STA4850 ID280, 4080 x 4080 pixels, half height 30.60 mm
+
+# From LRIS2_ETC Instrument.lris2_red. The ETC gives no gain.
+properties :
+  dark_current : 1.806e-5     # [e-/s/pixel] 0.065 e-/hr
+  readout_noise : 3.5         # [e-]
 
 effects :
   - name: LRIS-2_red_detector_geometry
-    description: STA5100, 4080 x 4080 pixels, half height 30.60 mm
+    description: STA4850 ID280, 4080 x 4080 pixels, half height 30.60 mm
     class: DetectorList
     kwargs:
       array_dict:
@@ -26,7 +31,7 @@ effects :
         y_size: [4080]
         pixel_size: [0.015]
         angle: [0.]
-        gain: [1.]
+        gain: [0.92]
       x_cen_unit : mm
       y_cen_unit : mm
       x_size_unit : pixel
