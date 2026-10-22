@@ -7,6 +7,7 @@ description : Keck I telescope
 properties :
   telescope : keck
   temperature : "!ATMO.temperature"
+  mirror_list : LIST_keck_mirrors.dat   # an instrument may override this, as LRIS-2 does
 
 effects:
 - name : telescope_reflection
@@ -14,4 +15,4 @@ effects:
   class : SurfaceList
   include : True
   kwargs :
-    filename : LIST_keck_mirrors.dat
+    filename : "!TEL.mirror_list"

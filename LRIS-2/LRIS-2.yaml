@@ -47,16 +47,21 @@ effects:
   kwargs :
     filename : TER_keck_adc.dat
 
-- name : collimator
-  description : The two reflecting surfaces of the LRIS-2 collimator, 99.9 percent each,
-                flat across the band, giving a net 0.998 for the pair. In beam order the
-                collimator sits after the Keck I Cassegrain ADC and before the dichroic.
-  class : SurfaceList
-  include : True
-  kwargs :
-    filename : LIST_LRIS-2_collimator.dat
+# NOTE: the collimator and dichroic are NOT here, even though both sit in the
+# beam before it splits. The collimator coating differs between the arm design
+# values, and which dichroic column applies depends on the arm - the red arm uses
+# transmission, the blue arm uses reflection. Both therefore live in the arm
+# files, LRIS-2_R.yaml and LRIS-2_B.yaml.
 
-# NOTE: the dichroic is NOT here, even though it is one physical part in the common
-# beam. Which of its two columns applies depends on the arm - the red arm uses
-# transmission, the blue arm uses reflection - so it lives in LRIS-2_IMG_R.yaml and
-# LRIS-2_IMG_B.yaml instead. Both point at the same TER_LRIS-2_dichroic.dat.
+---
+### Keck I telescope settings specific to LRIS-2
+object: telescope
+alias: TEL
+name: LRIS-2_keck_overrides
+description : Keck I telescope properties that LRIS-2 sets differently from the Keck package
+
+properties:
+  # Use the LRIS-2 ETC mirror reflectivity instead of bare aluminium. The Keck
+  # package keeps aluminium because ZShooter also uses it and runs into the NIR,
+  # where the ETC curve has no data.
+  mirror_list: LIST_LRIS-2_keck_mirrors.dat

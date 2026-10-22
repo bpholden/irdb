@@ -2,7 +2,7 @@
 # name : LRIS-2 R725p2 grating efficiency
 # description : Efficiency of the R725p2 grating assembly for the LRIS-2 red arm
 # author : BPH
-# source : LRIS2_ETC data/throughput/R725p2_grating.csv, copied here as gratings/R725p2_grating.csv
+# source : LRIS2_ETC data/throughput/R725p2_grating.csv, copied here as code/R725p2_grating.csv
 # date_created : 2026-10-21
 # date_modified : 2026-10-21
 # status : grating efficiency from the PDR efficiency spreadsheets, via the LRIS-2 ETC

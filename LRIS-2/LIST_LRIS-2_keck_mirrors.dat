@@ -1,0 +1,25 @@
+# name : Keck I telescope mirrors for LRIS-2
+# author : BPH
+# source : collecting area from LRIS2_ETC Telescope.keck, 723674 cm2 = 72.3674 m2; reflectivity from LRIS2_ETC Keck1_telescope.csv
+# date_created  : 2026-10-21
+# date_modified : 2026-10-21
+# status : design values
+# type : mirror:list
+# outer_unit : m
+# inner_unit : m
+# angle_unit : degree
+# temperature_unit  : deg_C
+# notes :
+# - LRIS-2 ONLY. Same geometry as Keck/LIST_keck_mirrors.dat, but with the ETC reflectivity
+# - instead of bare aluminium. LRIS-2.yaml selects it by setting TEL.mirror_list.
+# - Keep outer and inner in step with Keck/LIST_keck_mirrors.dat. They set the collecting area.
+# - inner is set to 2.8034 m so that the annulus area matches the ETC value of 72.3674 m2.
+# - that corresponds to the 7.9 percent central obscuration quoted by Telescope.keck.
+# - it is NOT the physical diameter of any baffle, it is the equivalent-area obscuration.
+# - SurfaceList.area takes the max over surfaces, so M1 and M2 carry the same aperture.
+# changes :
+# - 2026-10-21 (BPH) created from Keck/LIST_keck_mirrors.dat with the LRIS-2 ETC coating
+#
+name  outer  inner  angle  temperature  action         filename
+M1    10.0    2.8034 0.     0           reflection     TC_LRIS-2_keck_mirror.dat
+M2    10.0    2.8034 0.     0           reflection     TC_LRIS-2_keck_mirror.dat

@@ -1,0 +1,81 @@
+# source: LRIS2_ETC data/throughput/STA5100_predicted_blue_qe.dat
+# wavelength_unit: nm
+# action : transmission
+# type : detector:quantum_efficiency
+# description : PREDICTED quantum efficiency of the proposed STA5100 YCM blue CCD for LRIS-2
+# origin : the ETC file header reads Proposed STA5100 YCM LRIS2-Blue, from LRIS2Blue_YCM_vs_ITL.csv
+# date_created : 2026-10-21
+# status : PREDICTION for the planned device, not a measurement. Replace when the final blue device is acquired.
+# note : the blue arm electronics (read noise, dark, gain) come from an STA5100 test report, so QE and electronics now both describe the planned device.
+# grid : 70 points at 10 nm spacing, 300 to 990 nm
+wavelength transmission
+  300   0.662
+  310   0.753
+  320   0.792
+  330   0.828
+  340   0.861
+  350   0.873
+  360   0.876
+  370   0.887
+  380   0.913
+  390   0.929
+  400   0.931
+  410   0.929
+  420   0.926
+  430   0.921
+  440   0.915
+  450   0.911
+  460   0.905
+  470   0.898
+  480   0.891
+  490   0.887
+  500   0.879
+  510   0.873
+  520   0.865
+  530   0.860
+  540   0.855
+  550   0.852
+  560   0.845
+  570   0.839
+  580   0.836
+  590   0.831
+  600   0.828
+  610   0.823
+  620   0.819
+  630   0.815
+  640   0.813
+  650   0.810
+  660   0.805
+  670   0.802
+  680   0.799
+  690   0.797
+  700   0.794
+  710   0.791
+  720   0.787
+  730   0.784
+  740   0.781
+  750   0.778
+  760   0.773
+  770   0.768
+  780   0.760
+  790   0.752
+  800   0.741
+  810   0.728
+  820   0.715
+  830   0.699
+  840   0.678
+  850   0.652
+  860   0.615
+  870   0.599
+  880   0.551
+  890   0.533
+  900   0.488
+  910   0.459
+  920   0.422
+  930   0.383
+  940   0.346
+  950   0.290
+  960   0.272
+  970   0.222
+  980   0.203
+  990   0.173

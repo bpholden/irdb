@@ -5,7 +5,11 @@ numbers measured on 2026-10-20 with the COO ScopeSim fork (including the
 zodiacal-light fix on branch fix-zodiacal-ecliptic-coords) and the COO PALACE
 airglow model. The imaging sky corresponds to a dark Maunakea sky of about
 21.0 mag/arcsec2 in r and 22.2 in g. The long-slit values were updated on
-2026-10-21, when the grating curves became grating-only (DE x PRISMS).
+2026-10-21, when the grating curves became grating-only (DE x PRISMS). All
+star and sky values rose by about 1.29 on 2026-10-21, when the per-arm common
+path from the ETC replaced the flat 0.70 camera and 0.998 collimator. They
+then moved by 2 percent or less when the Keck mirrors and ADC were taken from
+the ETC and the blue QE became the STA5100 prediction.
 
 The Maunakea sky effects query SkyCalc over the network and need the COO
 ScopeSim fork, so the tests are skipped when that fork is not installed.
@@ -64,12 +68,12 @@ class TestImaging:
         star_counts = (img[r < 20] - sky).sum()
         return star_counts / DIT, sky / DIT / BINNED_PIXEL**2
 
-    @pytest.mark.parametrize("mode, rate", [("IMG_R", 3.33e5), ("IMG_B", 5.0e5)])
+    @pytest.mark.parametrize("mode, rate", [("IMG_R", 4.25e5), ("IMG_B", 6.52e5)])
     def test_star_count_rate(self, mode, rate):
         star_rate, _ = self.star_and_sky(mode)
         assert star_rate == pytest.approx(rate, rel=0.1)
 
-    @pytest.mark.parametrize("mode, rate", [("IMG_R", 1394), ("IMG_B", 635)])
+    @pytest.mark.parametrize("mode, rate", [("IMG_R", 1776), ("IMG_B", 827)])
     def test_dark_sky_count_rate(self, mode, rate):
         _, sky_rate = self.star_and_sky(mode)
         assert sky_rate == pytest.approx(rate, rel=0.25)
@@ -92,7 +96,7 @@ class TestLongSlit:
         sky = np.median(img[:, sky_cols], axis=1)
         return (img[:, xc - 15:xc + 16] - sky[:, None]).sum(axis=1)
 
-    @pytest.mark.parametrize("mode, total", [("LSS_R", 2.64e7), ("LSS_B", 2.64e7)])
+    @pytest.mark.parametrize("mode, total", [("LSS_R", 3.37e7), ("LSS_B", 3.47e7)])
     def test_star_counts_through_slit(self, mode, total):
         assert self.trace_spectrum(mode).sum() == pytest.approx(total, rel=0.2)
 

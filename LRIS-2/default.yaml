@@ -70,8 +70,8 @@ mode_yamls :
                             # is negligible.
   yamls:
     - LRIS-2_DET_R.yaml
+    - LRIS-2_R.yaml
     - LRIS-2_IMG.yaml
-    - LRIS-2_IMG_R.yaml
 
 - object : instrument
   alias: OBS
@@ -87,8 +87,8 @@ mode_yamls :
     wave_max : 0.600
   yamls:
     - LRIS-2_DET_B.yaml
+    - LRIS-2_B.yaml
     - LRIS-2_IMG.yaml
-    - LRIS-2_IMG_B.yaml
 
 - object : instrument
   alias: OBS
@@ -104,6 +104,7 @@ mode_yamls :
     wave_max : 1.010
   yamls:
     - LRIS-2_DET_R.yaml
+    - LRIS-2_R.yaml
     - LRIS-2_LSS_R.yaml
 
 - object : instrument
@@ -120,6 +121,7 @@ mode_yamls :
     wave_max : 0.581          # a 244 px unused strip at the blue edge.
   yamls:
     - LRIS-2_DET_B.yaml
+    - LRIS-2_B.yaml
     - LRIS-2_LSS_B.yaml
 
 ---

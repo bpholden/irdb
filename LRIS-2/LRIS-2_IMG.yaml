@@ -29,20 +29,9 @@ effects:
       minimum_throughput: 0.
       action: "transmission"
 
-  # NOTE: the detector QE curves are NOT here. They are arm-specific and mutually
-  # exclusive - the red and blue CCDs are alternative arms, not surfaces in series,
-  # so enabling both would multiply the two QE curves together. Each arm file
-  # enables exactly one. See LRIS-2_IMG_R.yaml and LRIS-2_IMG_B.yaml.
-
-  - name: LRIS-2_imaging_optics
-    description: Throughput of the LRIS-2 CAMERA optics only. The collimator is in
-                 LRIS-2.yaml, the dichroic is in the per-arm files, and the telescope
-                 mirrors are the SurfaceList in Keck.yaml, so none belong here.
-                 A real replacement curve must exclude all three or it will double-count.
-    class: TERCurve
-    include: True
-    kwargs:
-      filename: TER_LRIS-2_imaging_optics.dat
+  # NOTE: the camera, collimator, dichroic and CCD QE are NOT here. They are
+  # arm-specific, and the red and blue arms are alternatives, not surfaces in
+  # series, so each lives in its arm file, LRIS-2_R.yaml or LRIS-2_B.yaml.
 
 ---
 ### default detector parameters for IMG

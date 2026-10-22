@@ -1,8 +1,8 @@
 ### LRIS-2 long-slit, red arm
 #
-# Loaded by the LSS_R mode. Holds what is specific to the red spectroscopic
-# arm: the R400 grating, the red CCD QE, the dichroic in transmission, the slit
-# and the spectral trace.
+# Loaded by the LSS_R mode. Holds what is specific to red long-slit
+# spectroscopy: the R400 grating, the slit and the spectral trace. The arm's
+# common path, dichroic and CCD QE are in LRIS-2_R.yaml, which IMG_R also loads.
 #
 # THE TRACE GEOMETRY IS PROVISIONAL. See code/make_lss_traces.py - it is a
 # straight, untilted, linearly dispersed trace, which is a starting point and
@@ -53,29 +53,6 @@ effects:
       current_trace_list: "!OBS.grating_name"
       filename_format: "traces/LSS_{}_TRACE.fits"
       trace_list_names: "!INST.grating_names"
-
-  - name: LRIS-2_red_detector_qe
-    description: QE curve for the LRIS-2 red CCD
-    class: QuantumEfficiencyCurve
-    include: True
-    kwargs:
-      filename: STA4850_ID280_QE_v0.880b.txt
-
-  - name: dichroic_red
-    description: LRIS-2 dichroic in transmission, the red side of the 560 nm crossover
-    class: TERCurve
-    include: True
-    kwargs:
-      filename: TER_LRIS-2_dichroic.dat
-      action: transmission
-
-  - name: LRIS-2_camera_optics
-    description: LRIS-2 camera throughput. Collimator is in LRIS-2.yaml, telescope
-                 mirrors in Keck.yaml, so neither belongs here.
-    class: TERCurve
-    include: True
-    kwargs:
-      filename: TER_LRIS-2_imaging_optics.dat
 
 ---
 ### detector parameters for LSS

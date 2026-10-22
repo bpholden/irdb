@@ -1,0 +1,42 @@
+### LRIS-2 BLUE arm optics
+#
+# Everything the blue arm's light passes through in ANY mode: the arm's common
+# path, the dichroic in reflection and the blue CCD QE. Loaded by both IMG_B
+# and LSS_B. Mode-specific optics (filters, grating, slit, trace) live in
+# LRIS-2_IMG.yaml and LRIS-2_LSS_B.yaml.
+
+object: instrument
+alias: INST
+name: LRIS-2_B
+description : LRIS-2 blue arm optics common to all modes
+date_created: 2026-10-21
+
+effects:
+  - name: blue_common_path
+    description: Window, collimator (2 mirrors), fold mirror and camera of the blue arm,
+                 from the LRIS-2 ETC. Excludes the dichroic, which is dichroic_blue below.
+    class: TERCurve
+    include: True
+    kwargs:
+      filename: TER_LRIS-2_blue_common_path.dat
+
+  - name: dichroic_blue
+    description: LRIS-2 dichroic in REFLECTION, which is the blue side. Crossover is at
+                 560 nm, below which the dichroic reflects about 99 percent. Same
+                 physical part and same data file as dichroic_red in LRIS-2_R.yaml,
+                 which takes the transmission column instead.
+    class: TERCurve
+    include: True
+    kwargs:
+      filename: TER_LRIS-2_dichroic.dat
+      action: reflection
+
+  - name: LRIS-2_blue_detector_qe
+    description: PREDICTED QE of the planned STA5100 blue CCD, from the LRIS-2 ETC.
+                 Matches the STA5100 test-report electronics in LRIS-2_DET_B.yaml.
+                 Replace when the final blue device is acquired. Exactly one detector
+                 QE curve may be active, which is why the red curve lives in LRIS-2_R.yaml.
+    class: QuantumEfficiencyCurve
+    include: True
+    kwargs:
+      filename: STA5100_predicted_blue_QE.txt
